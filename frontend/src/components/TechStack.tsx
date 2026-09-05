@@ -36,8 +36,10 @@ function TechStack() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch("http://localhost:3000/skills")
+    fetch(`${API_URL}/skills`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch skills");
         return res.json();
