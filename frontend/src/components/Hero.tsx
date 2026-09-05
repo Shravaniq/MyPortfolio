@@ -1,4 +1,7 @@
 
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+
 function Hero() {
   return (
     <section
@@ -11,9 +14,11 @@ function Hero() {
 
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2">
 
-        {/* Left: text */}
+        {/* Left: Text */}
         <div>
-          <p className="mb-2 text-lg text-gray-300">Hi, I'm</p>
+          <p className="mb-2 text-lg text-gray-300">
+            Hi, I'm
+          </p>
 
           <h1 className="mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-6xl font-extrabold text-transparent">
             Shravani
@@ -46,28 +51,53 @@ function Hero() {
             </a>
           </div>
 
-          {/* Social links */}
-          <p className="mb-3 text-sm text-gray-400">Connect with me</p>
+          {/* Social Links */}
+          <p className="mb-3 text-sm text-gray-400">
+            Connect with me
+          </p>
 
           <div className="flex gap-3">
-            {["GitHub", "LinkedIn", "Twitter", "Email"].map((label) => (
-              <a
-                key={label}
-                href="#"
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-gray-300 transition hover:bg-purple-600 hover:text-white"
-              >
-                •
-              </a>
-            ))}
+
+            {/* GitHub */}
+            <a
+              href="https://github.com/Shravaniq"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-gray-300 transition hover:bg-purple-600 hover:text-white"
+            >
+              <FaGithub className="text-lg" />
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/shravani-tammewar-442039247/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-gray-300 transition hover:bg-purple-600 hover:text-white"
+            >
+              <FaLinkedin className="text-lg" />
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:shravanitammewar@gmail.com"
+              aria-label="Email"
+              className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-gray-300 transition hover:bg-purple-600 hover:text-white"
+            >
+              <MdEmail className="text-lg" />
+            </a>
+
           </div>
         </div>
 
-        {/* Right: photo + floating badges */}
+        {/* Right: Photo + Floating Badges */}
         <div className="relative mx-auto flex h-[400px] w-[400px] items-center justify-center">
-          
+
           {/* Circular borders */}
           <div className="absolute inset-0 rounded-full border border-white/10" />
+
           <div className="absolute inset-6 rounded-full border border-dashed border-white/10" />
 
           {/* Profile image */}
@@ -78,21 +108,27 @@ function Hero() {
           />
 
           {/* Floating badges */}
-          <div className="absolute left-0 top-8 flex h-14 w-14 items-center justify-center rounded-xl bg-[#111827] shadow-lg">
+
+          {/* Node.js */}
+          <div className="absolute left-0 top-8 flex h-14 w-14 items-center justify-center rounded-xl bg-[#111827] text-2xl shadow-lg">
             🟢
           </div>
 
-          <div className="absolute right-0 top-0 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-600 shadow-lg">
+          {/* TypeScript */}
+          <div className="absolute right-0 top-0 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-600 font-bold text-white shadow-lg">
             TS
           </div>
 
-          <div className="absolute bottom-8 left-0 flex h-14 w-14 items-center justify-center rounded-xl bg-[#111827] shadow-lg">
+          {/* MongoDB */}
+          <div className="absolute bottom-8 left-0 flex h-14 w-14 items-center justify-center rounded-xl bg-[#111827] text-2xl shadow-lg">
             🍃
           </div>
 
-          <div className="absolute bottom-0 right-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#111827] shadow-lg">
+          {/* Backend / Tech */}
+          <div className="absolute bottom-0 right-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#111827] text-2xl shadow-lg">
             🦁
           </div>
+
         </div>
       </div>
     </section>
@@ -100,4 +136,3 @@ function Hero() {
 }
 
 export default Hero;
-
