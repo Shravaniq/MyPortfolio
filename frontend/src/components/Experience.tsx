@@ -15,8 +15,10 @@ function Experience() {
   const [error, setError] = useState<string | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch("http://localhost:3000/experience")
+    fetch(`${API_URL}/experience`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch experience");
         return res.json();
