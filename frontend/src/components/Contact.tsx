@@ -2,6 +2,10 @@ import { useState } from "react";
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -9,18 +13,35 @@ function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Backend not built yet — placeholder for now.
-    console.log("Form submitted:", form);
-    alert("Backend not connected yet — this will send a real message soon!");
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("http://localhost:3000/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.message?.[0] || "Failed to send message");
+      }
+
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
+    }
   };
 
   return (
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-7xl rounded-2xl border border-white/10 bg-white/[0.03] p-10 md:p-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-          {/* Left: info */}
           <div>
             <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-purple-400">
               Let's Connect
@@ -41,7 +62,6 @@ function Contact() {
             </div>
           </div>
 
-          {/* Right: form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <input
@@ -76,10 +96,20 @@ function Contact() {
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 text-sm font-medium transition hover:scale-[1.02]"
+              disabled={status === "sending"}
+              className="w-full rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 text-sm font-medium transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Send Message →
+              {status === "sending" ? "Sending..." : "Send Message →"}
             </button>
+
+            {status === "sent" && (
+              <p className="text-sm text-green-400">
+                ✓ Message sent! I'll get back to you soon.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-sm text-red-400">Message {errorMsg}</p>
+            )}
           </form>
         </div>
       </div>

@@ -25,9 +25,28 @@ const Navbar = () => {
           <a href="#contact" className="text-sm text-gray-400 transition hover:text-purple-400">Contact</a>
         </div>
 
-        <button className="rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 text-sm font-medium transition hover:scale-105">
-          Download CV
-        </button>
+   
+<div className="mb-10 flex gap-3">
+
+  <a
+    href="/resume.pdf"
+    download="Shravani_Tammewar_Resume.pdf"
+    className="rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 text-sm font-medium transition hover:scale-105"
+  >
+    Download Resume 
+  </a>
+
+  <a
+    href="/resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+ className="rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 text-sm font-medium transition hover:scale-105"  >
+    View Resume
+  </a>
+
+</div>
+
+
 
         </div>
       </nav>
