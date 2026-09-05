@@ -1,5 +1,3 @@
-import React from 'react'
-
 function About() {
   const stats = [
     { icon: "📅", value: "1+", label: "Years Experience" },
